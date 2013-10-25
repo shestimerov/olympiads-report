@@ -1,0 +1,78 @@
+На 28 минуте олимпиады команда Гимназии №1543 ``Суслики'' отправила на проверку решение по задаче A.``Слоники'' на языке программирования GNU C++ 4.7 (Решение №1218), которое получило вердикт ``Неправильный ответ'' (Протокол проверки №1218)
+\begin{lstlisting}[language=c++, label=r1218, caption=Решение №1218]
+#include <cstdio>
+#include <iostream>
+#include <cstdlib>
+#include <algorithm>
+
+using namespace std;
+
+int main () {
+	//freopen("input.txt", "rt", stdin);
+	//freopen("output.txt", "wt", stdout);
+	bool f = 1;
+	int n, ap, af, bp, bf, c, d, p, k, x, y;
+	scanf("%d%d%d%d%d", &n, &ap, &bp, &af, &bf);
+	//
+	if (n == -1) {
+		swap(bp, bf);
+	}
+	c = max(ap, af) - min(ap, af) - 1;
+	d = min(bp, bf) - 1;
+	p = c - d;
+	if (p < 0) {
+		f = 0;
+	} else {
+		k = max(bp, bf) + p;
+		if ((af - ap) % k < 0) {
+			x = k + ((af - ap) % k);
+		} else {
+			x = (af - ap) % k;
+		}
+		if ((bf - bp) % k < 0) {
+			y = k + ((bf - bp) % k);
+		} else {
+			y = (bf - bp) % k;
+		}
+		//cout << x << ' ' << y << k;
+		if (x == y) {
+			printf ("%d", k);
+		} else {
+			f = 0;
+		}
+	}
+	if (f == 0) {
+		printf("%d", -1);
+	}
+	//} else {
+		/*if ((max(af, ap) == ap) && (max(bf, bp) == bp)) {
+			if ((max(af, ap) - min(af, ap) == max(bf, bp) - min(bf, bp)) {
+			}
+		} else {*/
+	return 0;
+}
+
+\end{lstlisting}
+
+\begin{longtabu} to \linewidth{|p{1cm}|p{2.5cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{5cm}|}\caption{Протокол проверки №3492}\\\hline№ теста & Результат & ЦПУ, сек. & Общее время, сек. & Память & Комментарий по результату работы \\\hline
+4 & WA & 1 & 2 & 286720 & \begin{verbatim}
+Answers differ: [1]: out: -1, corr: 7
+
+
+\end{verbatim}\\\hline
+2 & OK & 1 & 2 & 286720 & \begin{verbatim}
+OK
+
+
+\end{verbatim}\\\hline
+3 & OK & 1 & 2 & 286720 & \begin{verbatim}
+OK
+
+
+\end{verbatim}\\\hline
+1 & OK & 1 & 2 & 286720 & \begin{verbatim}
+OK
+
+
+\end{verbatim}\\\hline
+\end{longtabu}

@@ -1,0 +1,127 @@
+На 28 минуте олимпиады команда Гимназии №1543 ``Суслики'' отправила на проверку решение по задаче A.``Слоники'' на языке программирования GNU C++ 4.7 (Решение №1217), которое получило вердикт ``Ошибка во время выполнения программы'' (Протокол проверки №1217)
+\begin{lstlisting}[language=c++, label=r1217, caption=Решение №1217]
+var
+D, Ap, Bp, Af, Bf :integer;
+Afirst , Bfirst :integer;  //1 флаг 2 плакат
+different: boolean;
+m, n, l, min1, min2, answer, max1, max2 :integer;
+
+begin
+  readln(D);
+  readln(Ap);
+  readln(Bp);
+  readln(Af);
+  readln(Bf);
+  
+  if (D = 1) then
+  begin
+    if (((Af < Ap) and (Bf > Bp)) or ((Af > Ap) and (Bf < Bp))) then
+    begin
+      different:=true;
+    end
+    else
+    begin
+      different:=false;
+    end
+  end;
+  if (D = -1) then
+  begin
+    if (((Af < Ap) and (Bf < Bp)) or ((Af > Ap) and (Bf > Bp))) then
+    begin
+      different:=true;
+    end
+    else
+    begin
+      different:=false;
+    end
+  end;
+  
+  if (different = true) then
+  begin
+    if(((Af < Ap) and (Bp < Bf)) or ((Af > Ap) and (Bp > Bf)) or ((Af < Ap) and (Bp > Bf)) or ((Af < Ap) and (Bp > Bf))) then
+    begin
+      m:=Af-Ap;
+      if(m < 0) then
+      begin
+        m:=-m;
+      end;
+      n:=Bf-Bp;
+      if(n < 0) then
+      begin
+        n:=-n;
+      end;
+      answer:=n+m
+    end;
+  end;
+  
+  
+  if (different = false) then
+  begin
+    m:=Af-Ap;
+    if(m < 0) then
+    begin
+      m:=-m;
+    end;
+    n:=Bf-Bp;
+    if(n < 0) then
+    begin
+      n:=-n;
+    end;
+  
+    if (Af > Ap) then
+    begin
+     max1:=Af
+    end
+    else
+    begin
+     max1:=Ap
+    end;
+    
+    if (Bf > Bp) then
+    begin
+     max2:=Bf
+    end
+    else
+    begin
+      max2:=Bp
+    end;
+    
+    if (max1 > max2) then
+    begin
+      answer:= max1
+    end
+    else
+    begin
+      answer:= max2;
+    end;
+    
+    if (((Ap = Af) and (Bp <> Bf)) or ((Ap <> Af) and (Bp = Bf))) then
+    begin
+      answer:= -1;
+    end;
+    
+    if (m<>n) then
+    begin
+      answer:= -1;
+    end;
+  end;
+  
+  
+  
+  
+  
+  
+  writeln(answer);
+end.
+\end{lstlisting}
+
+\begin{longtabu} to \linewidth{|p{1cm}|p{2.5cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{5cm}|}\caption{Протокол проверки №3492}\\\hline№ теста & Результат & ЦПУ, сек. & Общее время, сек. & Память & Комментарий по результату работы \\\hline
+1 & RT & 53 & 56 & 7897088 & \begin{verbatim}
+  File "./001217", line 5
+    D, Ap, Bp, Af, Bf :integer;
+                      ^
+SyntaxError: invalid syntax
+
+
+\end{verbatim}\\\hline
+\end{longtabu}

@@ -1,0 +1,113 @@
+На 28 минуте олимпиады команда Гимназии №1543 ``Суслики'' отправила на проверку решение по задаче A.``Слоники'' на языке программирования GNU C++ 4.7 (Решение №1216), которое получило вердикт ``Неправильный ответ'' (Протокол проверки №1216)
+\begin{lstlisting}[language=c++, label=r1216, caption=Решение №1216]
+var
+   n,m,c,x,y,x1,y1,h,x2,y2,p,x3,y3,i,j,chmax,chmin,gg:integer;
+   ax:array[1..1000]of integer;
+   ay:array[1..1000]of integer;
+   a1x:array[1..1000]of  integer;
+   a1y,ax2,ay2,hx,hy:array[1..1000]of  integer;
+   
+begin
+chmax:=-1;
+     x2:=-1;
+     y2:=-1;
+     x3:=1001;
+     y3:=1001;
+     chmin:=1001;
+     readln(n,m,c);
+     for i:=1 to c do begin
+         readln(x1,y1);
+         ax[i]:=x1;
+         ay[i]:=y1;
+     end;
+     readln(h);
+      for i:=1 to h do begin
+         readln(x1,y1);
+         a1x[i]:=x1;
+         a1y[i]:=y1;
+     end;
+     m:=1;
+     gg:=1;
+     for i:=1 to h do begin
+         for j:=1 to c do begin
+             x:=abs(a1x[i] - ax[j]);
+               y:=abs(a1y[i] - ay[j]);
+             if (y+x)>(y2+x2) then begin
+             ax2[j]:=x;
+             ay2[j]:=y;
+              end;
+
+                  if ax2[m]+ay2[m]>chmax then chmax:=ax2[m]+ay2[m];
+                  inc(m);
+
+          end;
+
+             hx[gg]:=chmax;
+              inc(gg);
+           chmax:=-1;
+           m:=1;
+      end;
+     for m:=1 to h do begin
+         if hx[m]<chmin then begin
+            p:=m;
+            chmin:= hx[m];
+         end;
+         end;
+
+     writeln(chmin);
+     write(p);
+end.
+\end{lstlisting}
+
+\begin{longtabu} to \linewidth{|p{1cm}|p{2.5cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{5cm}|}\caption{Протокол проверки №3492}\\\hline№ теста & Результат & ЦПУ, сек. & Общее время, сек. & Память & Комментарий по результату работы \\\hline
+6 & OK & 6 & 8 & 303104 & \begin{verbatim}
+OK
+
+
+\end{verbatim}\\\hline
+7 & OK & 0 & 1 & 303104 & \begin{verbatim}
+OK
+
+
+\end{verbatim}\\\hline
+4 & OK & 0 & 1 & 303104 & \begin{verbatim}
+OK
+
+
+\end{verbatim}\\\hline
+5 & OK & 0 & 1 & 303104 & \begin{verbatim}
+OK
+
+
+\end{verbatim}\\\hline
+2 & OK & 0 & 1 & 303104 & \begin{verbatim}
+OK
+
+
+\end{verbatim}\\\hline
+3 & OK & 0 & 1 & 303104 & \begin{verbatim}
+OK
+
+
+\end{verbatim}\\\hline
+1 & OK & 0 & 1 & 303104 & \begin{verbatim}
+OK
+
+
+\end{verbatim}\\\hline
+10 & WA & 0 & 1 & 303104 & \begin{verbatim}
+Answers differ: [1]: out: 1001, corr: 1550
+
+
+\end{verbatim}\\\hline
+8 & OK & 0 & 1 & 303104 & \begin{verbatim}
+OK
+
+
+\end{verbatim}\\\hline
+9 & OK & 0 & 1 & 303104 & \begin{verbatim}
+OK
+
+
+\end{verbatim}\\\hline
+\end{longtabu}
