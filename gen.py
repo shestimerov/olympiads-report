@@ -3,8 +3,8 @@ import xml.dom.minidom
 import xml
 import gzip
 
-protocol_path = 'c:\\mkoshp-tex\\304\\xmlreports\\'
-source_path = 'c:\\mkoshp-tex\\304\\runs\\'
+protocol_path = 'c:\\mkoshp\\olympiads-report\\304\\archive\\xmlreports\\'
+source_path = 'c:\\mkoshp\\olympiads-report\\304\\archive\\runs\\'
 
 def get_string_status(s):
     return {
@@ -68,6 +68,7 @@ def get_from_file(filename):
 
 def get_protocol(run_id): 
     filename = submit_protocol_path(run_id)
+    print(filename)
     if filename != '':
         return get_from_file(filename)
     else:
@@ -162,7 +163,7 @@ def parsetests(xml):
                     'max_memory_used' : max_memory_used,
                     'comment' : comment
                    }
-            res['tests'][number] = test
+            res['tests'][int(number)] = test
     return res
 
 
@@ -176,14 +177,14 @@ def get_source_tex(run_id):
 
 def get_protocol_tex(run_id):
     protocol = get_tested_protocol_data(run_id)   
-    res = '''\\begin{longtabu} to \\linewidth{|p{1cm}|p{2.5cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{5cm}|}\
-\\caption{Протокол проверки №3492}\\\\\
-\\hline\
-№ теста & Результат & ЦПУ, сек. & Общее время, сек. & Память & Комментарий по результату работы \\\\\
-\\hline\n'''
-    for num, test in protocol['tests'].items():
-        res += '{0} & {1} & {2} & {3} & {4} & {5}\\\\\\hline\n'.format(num, test['status'], test['time'], test['real_time'], test['max_memory_used'], '\\begin{verbatim}\n' + test['comment'] + '\n\\end{verbatim}')
-    res += '\\end{longtabu}'
+    res = '\nРезультат проверки решения №' + str(run_id) + ':\n\n \\begin{longtable}{|p{1cm}|p{2.5cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{5cm}|}'
+    res += '''\\hline
+№ теста & Результат & ЦПУ, сек. & Общее время, сек. & Память & Комментарий по результату работы \\\\ \\hline \n'''
+    for num, test in sorted(protocol['tests'].items()):
+        res += '{0} & {1} & {2} & {3} & {4} & '.format(num, test['status'], test['time'], test['real_time'], test['max_memory_used'])
+#        res += '\begin{verbatim}' 
+        res += '{0} \\\\ \\hline\n'.format('\\begin{spverbatim}' + test['comment'] + '\\end{spverbatim} ')
+    res += '\\end{longtable}'
     return res
 
 def get_run_tex(run_id, time, school, name, lang_name, prob_name):

@@ -115,13 +115,15 @@ begin
 end.
 \end{lstlisting}
 
-\begin{longtabu} to \linewidth{|p{1cm}|p{2.5cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{5cm}|}\caption{Протокол проверки №3492}\\\hline№ теста & Результат & ЦПУ, сек. & Общее время, сек. & Память & Комментарий по результату работы \\\hline
-1 & RT & 53 & 56 & 7897088 & \begin{verbatim}
-  File "./001217", line 5
+
+Результат проверки решения №1217:
+
+ \begin{longtable}{|p{1cm}|p{2.5cm}|p{1.5cm}|p{2.5cm}|p{1.5cm}|p{5cm}|}\hline
+№ теста & Результат & ЦПУ, сек. & Общее время, сек. & Память & Комментарий по результату работы \\ \hline 
+1 & RT & 53 & 56 & 7897088 & \begin{spverbatim}  File "./001217", line 5
     D, Ap, Bp, Af, Bf :integer;
                       ^
 SyntaxError: invalid syntax
 
-
-\end{verbatim}\\\hline
-\end{longtabu}
+\end{spverbatim}  \\ \hline
+\end{longtable}
